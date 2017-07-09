@@ -13,6 +13,11 @@ QStringList SerialSender::availablePorts()
 SerialSender::SerialSender(QObject *parent) : ISender(parent)
 {
     _serialPort = new QSerialPort(this);
+    connect(_serialPort,
+            static_cast<void (QSerialPort::*)(QSerialPort::SerialPortError)>(&QSerialPort::error),
+            this, &SerialSender::errorHandler
+            );
+    connect(_serialPort,&QSerialPort::readyRead,this,&SerialSender::readHandler);
 }
 
 void SerialSender::setPortName(const QString newPortName)
@@ -43,4 +48,10 @@ void SerialSender::readHandler()
 {
     QString data = _serialPort->readAll();
     emit msgReceived(data);
+}
+
+void SerialSender::errorHandler(QSerialPort::SerialPortError e)
+{
+    if(e != QSerialPort::NoError )
+        emit error(_serialPort->errorString());
 }

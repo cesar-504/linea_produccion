@@ -18,6 +18,7 @@ SerialSender::SerialSender(QObject *parent) : ISender(parent)
             this, &SerialSender::errorHandler
             );
     connect(_serialPort,&QSerialPort::readyRead,this,&SerialSender::readHandler);
+    connect(_serialPort, &QSerialPort::baudRateChanged,this,&SerialSender::baudRateChanged);
 }
 
 void SerialSender::setPortName(const QString newPortName)
@@ -39,6 +40,12 @@ void SerialSender::setIsOpen(const bool newIsOpen)
 
 }
 
+void SerialSender::setBaudRate(const int newBaudRate)
+{
+    if(_serialPort->baudRate()== newBaudRate ) return;
+    _serialPort->setBaudRate(newBaudRate);
+}
+
 void SerialSender::sendMsg(const QString msg)
 {
     _serialPort->write(msg.toUtf8());
@@ -49,6 +56,7 @@ void SerialSender::readHandler()
     QString data = _serialPort->readAll();
     emit msgReceived(data);
 }
+
 
 void SerialSender::errorHandler(QSerialPort::SerialPortError e)
 {

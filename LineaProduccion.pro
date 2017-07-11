@@ -30,6 +30,10 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
+# Cesar "don't break code!"
+qml_scenes.depends = $$PWD/*.qml
+QMAKE_EXTRA_TARGETS += qml_scenes
+
 DISTFILES += \
     umldiagram.qmodel \
     protocolo-arduino-pc

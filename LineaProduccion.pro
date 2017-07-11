@@ -41,4 +41,5 @@ DISTFILES += \
 HEADERS += \
     isender.h \
     serialsender.h \
-    productionline.h
+    productionline.h \
+    testsender.h

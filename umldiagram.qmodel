@@ -55,7 +55,7 @@
                          </stereotypes>
                          <name>ISender</name>
                          <pos>x:40;y:255</pos>
-                         <rect>x:-120;y:-65;w:240;h:130</rect>
+                         <rect>x:-120;y:-60;w:240;h:120</rect>
                          <visual-role>0</visual-role>
                          <stereotype-display>2</stereotype-display>
                         </DObject>
@@ -120,7 +120,7 @@
                          <object>{3d112257-5021-4fcf-9ddb-9476fbd9454a}</object>
                          <name>Station</name>
                          <pos>x:675;y:480</pos>
-                         <rect>x:-80;y:-40;w:160;h:80</rect>
+                         <rect>x:-80;y:-35;w:160;h:70</rect>
                          <visual-role>0</visual-role>
                         </DObject>
                        </base-DObject>
@@ -181,7 +181,7 @@
                          <object>{2f2bff5e-7207-4954-a5bd-08484d2b2514}</object>
                          <name>Connection</name>
                          <pos>x:860;y:530</pos>
-                         <rect>x:-95;y:-90;w:190;h:180</rect>
+                         <rect>x:-95;y:-85;w:190;h:170</rect>
                          <visual-role>0</visual-role>
                         </DObject>
                        </base-DObject>
@@ -385,7 +385,7 @@
                        </base-DElement>
                        <text>Qml</text>
                        <pos>x:600;y:120</pos>
-                       <rect>x:0;y:0;w:182;h:32</rect>
+                       <rect>x:0;y:0;w:182;h:31</rect>
                        <auto-sized>false</auto-sized>
                       </DAnnotation>
                      </instance>
@@ -1551,7 +1551,7 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{7502128e-dfb2-4463-aa77-adfc877343f5}</uid>
+                    <uid>{1110d979-e3d3-4778-8ac8-5ac0cb5bad29}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>void startLP()</declaration>
@@ -1559,7 +1559,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{260d1354-3c9d-4e8c-ae61-11382573339b}</uid>
+                    <uid>{10e475e6-76a9-4836-9013-0ea307f17943}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>void start(int station)</declaration>
@@ -1567,7 +1567,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{9891db7a-7339-47c6-b46f-a5a2ec936220}</uid>
+                    <uid>{94b37878-31ae-4b5e-b937-26e30c3431ca}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>void stopLP()</declaration>
@@ -1575,7 +1575,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{b372d5cd-8950-4fd9-9894-9aa8d02ef095}</uid>
+                    <uid>{678742ce-5c6d-4912-ae3e-71fcaf0c30f1}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>void stop(int station)</declaration>
@@ -1583,7 +1583,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{f9633f1d-23b7-4c90-a8c6-853872e07c64}</uid>
+                    <uid>{d169313d-a572-431d-9f41-adfa69e04913}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>void entry(int station)</declaration>
@@ -1591,7 +1591,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{d483a30c-ccf0-4586-98cf-1f1bdf032836}</uid>
+                    <uid>{54415c7d-41c0-4b07-95c6-2ead154f46c0}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>void exit(int station)</declaration>
@@ -1599,7 +1599,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{21870922-ca8e-4f4a-8f83-88c0ea8067d2}</uid>
+                    <uid>{e205ca9d-a884-4921-bd81-cc5f84ee271f}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>void entryLP()</declaration>
@@ -1607,7 +1607,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{e886df20-3dc8-42a3-ab26-77e779e1b7b3}</uid>
+                    <uid>{56fb24ed-f892-4ed7-84da-b4534736e95f}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>void exitLP()</declaration>
@@ -1615,7 +1615,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{014224e3-897a-4309-95a8-346d01800ac4}</uid>
+                    <uid>{9ed758bf-05dc-47b2-a2e1-7dc7f8b63c21}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>void exitErrorLP()</declaration>

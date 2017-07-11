@@ -1,0 +1,52 @@
+Lista de comandos
+
+Todos los comando enpiezan con  ^ 
+y terminan con $
+
+
+Mensajes del pc al arduino
+
+
+00 Respuesta comando de arduino
+    01 : comando
+    00 : respuesta
+    Respuestas:
+        00 : ok
+        01 : error
+    Ejemplo: ^005100$ - Respuesta a encender todos correcta
+    
+01 Encender
+02 Apagar
+    00 : todos
+    01-99 : numero de estacion
+    Ejemplo : ^0210$ - apaga la estacion 10 
+
+
+
+
+
+Mensajes del arduino al pc:
+
+50 Respuesta a comando de pc
+    01 : comando
+    00 : respuesta
+    Respuestas:
+        00 : ok
+        01 : error
+    Ejemplo: ^500100$ - Respuesta a encender todos correcta
+
+51 entrada a estación 
+    01 : numero de estacion
+    01 : numero de estacion de la que llega 
+    Ejemplo : ^510201$  entra a estacion 02 de la estacion 01
+52 salida de estación
+    01 : numero de estacion
+    01 : numero de estacion destino (00 ninguna)
+    Ejemplo : ^520102$ sale de estacion 01 hacia estacion 02
+    
+        
+
+
+
+
+

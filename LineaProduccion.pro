@@ -3,7 +3,8 @@ QT += qml quick serialport
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    serialsender.cpp
+    serialsender.cpp \
+    productionline.cpp
 
 RESOURCES += qml.qrc
 
@@ -30,8 +31,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    umldiagram.qmodel
+    umldiagram.qmodel \
+    protocolo-arduino-pc
 
 HEADERS += \
     isender.h \
-    serialsender.h
+    serialsender.h \
+    productionline.h

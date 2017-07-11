@@ -42,7 +42,7 @@ void SerialSender::setIsOpen(const bool newIsOpen)
 
 void SerialSender::setBaudRate(const int newBaudRate)
 {
-    if(_serialPort->baudRate()== newBaudRate ) return;
+    if(_serialPort->baudRate() == newBaudRate ) return;
     _serialPort->setBaudRate(newBaudRate);
 }
 

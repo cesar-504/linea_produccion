@@ -34,7 +34,7 @@ void ProductionLine::start(int station, QJSValue callback)
     }
     QString c = "^01";
     if(station<10) c.append("0");
-    QString::number(station);
+    c.append(QString::number(station));
     c.append("$\n");
     auto conn = std::make_shared<QMetaObject::Connection>();
     *conn = QObject::connect(this, &ProductionLine::started,
@@ -55,7 +55,7 @@ void ProductionLine::stop(int station, QJSValue callback)
     }
     QString c = "^02";
     if(station<10) c.append("0");
-    QString::number(station);
+    c.append(QString::number(station));
     c.append("$\n");
     auto conn = std::make_shared<QMetaObject::Connection>();
     *conn = QObject::connect(this, &ProductionLine::stoped,
@@ -86,6 +86,7 @@ bool ProductionLine::ck50(QString msg)
         }
 
     }else if(sub == "02"){
+        sub = QStringRef(&msg,6,2);
         if(sub == "02"){
             emit error("error al intentar apagar estaciones");
             return false;

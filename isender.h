@@ -12,6 +12,7 @@ public:
     virtual ~ISender(){}
     virtual void sendMsg(const QString msg)=0;
 
+
 signals:
     void msgReceived(const QString msg);
     void error(const QString errorMsg);

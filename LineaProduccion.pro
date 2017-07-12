@@ -1,4 +1,4 @@
-QT += qml quick serialport
+QT += qml quick serialport charts
 
 CONFIG += c++11
 
@@ -41,4 +41,5 @@ DISTFILES += \
 HEADERS += \
     isender.h \
     serialsender.h \
-    productionline.h
+    productionline.h \
+    testsender.h

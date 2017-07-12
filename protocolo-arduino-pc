@@ -37,7 +37,7 @@ Mensajes del arduino al pc:
     Ejemplo: ^50010000$ - Respuesta a encender todos correcta
     Ejemplo: ^50010101no se encontro motor 1$ - Respuesta a encender motor 1 fallida
 51 entrada a estación 
-    01 :  numero de estacion de la que venia
+    01 :  numero de estacion de la que venia (00 ninguna)
     02 :  numero de estacion a la que llego
     Ejemplo : ^510102$  entra a estacion 02 de la estacion 01
 52 salida de estación

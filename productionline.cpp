@@ -103,18 +103,18 @@ bool ProductionLine::ck51(QString msg)
     if(!msg.startsWith("51")) return false;
     int from, to;
     QStringRef sub(&msg,2,2);
-    bool * b = nullptr;
-    bool * b2 = nullptr;
-    from = sub.toInt(b,10);
-    sub = QStringRef(&msg,6,2);
-    to  = sub.toInt(b2,10);
+    bool b =false;
+    bool b2 =false;
+    from = sub.toInt(&b,10);
+    sub = QStringRef(&msg,4,2);
+    to  = sub.toInt(&b2,10);
     if(b && b2){
         emit entryOn(from,to);
-        sendMsg("^505100$");
+        sendMsg("^50"+msg+"00$");
         return true;
     }else{
         emit warning("comando 51 no valido recibido : " + msg);
-        sendMsg("^505101$");
+        sendMsg("^50"+msg+"01$");
         return false;
     }
 
@@ -125,19 +125,19 @@ bool ProductionLine::ck52(QString msg)
     if(!msg.startsWith("52")) return false;
     int from, to;
     QStringRef sub(&msg,2,2);
-    bool * b = nullptr;
-    bool * b2 = nullptr;
-    from = sub.toInt(b,10);
-    sub = QStringRef(&msg,6,2);
-    to  = sub.toInt(b2,10);
+    bool b =false;
+    bool b2 =false;
+    from = sub.toInt(&b,10);
+    sub = QStringRef(&msg,4,2);
+    to  = sub.toInt(&b2,10);
     if(b && b2){
         emit exitOn(from,to);
-        sendMsg("^505200$");
-        return false;
+        sendMsg("^50"+msg+"00$");
+        return true;
     }else{
         emit warning("comando 52 no valido");
-        sendMsg("^505201$");
-        return true;
+        sendMsg("^50"+msg+"01$");
+        return false;
     }
 }
 

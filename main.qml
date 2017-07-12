@@ -6,23 +6,44 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Hello World")
+    title: qsTr("Linea de producción")
+//
+    property bool isLandscape: width > height
+    property bool isSmallDevice: !isLandscape && width < 360
 
-    SwipeView {
+    StackView {
         id: swipeView
         anchors.fill: parent
-        currentIndex: tabBar.currentIndex
+        //currentIndex: tabBar.currentIndex
+
+        replaceEnter: Transition{
+            PropertyAnimation{
+                property: "opacity"
+                from:0
+                to:1
+                duration: 300
+            }
+        }
+        replaceExit: Transition {
+            PropertyAnimation{
+                property: "opacity"
+                from:1
+                to:0
+                duration:300
+            }
+
+        }
 
     }
 
-    footer: TabBar {
-        id: tabBar
-        currentIndex: swipeView.currentIndex
-        TabButton {
-            text: qsTr("First")
-        }
-        TabButton {
-            text: qsTr("Second")
-        }
-    }
+//    footer: TabBar {
+//        id: tabBar
+//        currentIndex: swipeView.currentIndex
+//        TabButton {
+//            text: qsTr("First")
+//        }
+//        TabButton {
+//            text: qsTr("Second")
+//        }
+//    }
 }

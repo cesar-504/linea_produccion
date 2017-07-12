@@ -1,4 +1,5 @@
 #include <QGuiApplication>
+#include <QtWidgets/QApplication>
 #include <QQmlApplicationEngine>
 #include <QDebug>
 #include "isender.h"
@@ -6,10 +7,11 @@
 #include "testsender.h"
 #include "productionline.h"
 #include <QDebug>
+
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
     qmlRegisterType<ISender>();
     qmlRegisterType<SerialSender>("my", 1, 0, "SerialSender");
     ProductionLine  * p = new ProductionLine();

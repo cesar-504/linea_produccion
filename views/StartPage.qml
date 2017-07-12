@@ -2,6 +2,8 @@ import QtQuick 2.0
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 Item {
+    property var station : 0
+
     id: item1
     Rectangle {
         id: rect1
@@ -55,6 +57,19 @@ Item {
             height: 52
             fillMode: Image.PreserveAspectFit
             source: "../images/repair3.png"
+
+            Rectangle {
+                id: rectangle1
+                x: 0
+                width: 10
+                height: 10
+                color: "#78f478"
+                radius: 5
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.topMargin: 0
+                anchors.rightMargin: 0
+            }
         }
 
         Image {
@@ -64,6 +79,19 @@ Item {
             width: 54
             height: 51
             source: "../images/check2.png"
+
+            Rectangle {
+                id: rectangle
+                x: 0
+                width: 10
+                height: 10
+                color: "#78f478"
+                radius: 5
+                anchors.top: parent.top
+                anchors.topMargin: 0
+                anchors.right: parent.right
+                anchors.rightMargin: 0
+            }
         }
     }
 

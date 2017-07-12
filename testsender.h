@@ -28,16 +28,12 @@ public:
 
         if(_mode == "normal"){
             if(m.startsWith("00")) return;
-            if(m.startsWith("01") && QStringRef(&msg,2,2).toInt() >= 0 && QStringRef(&msg,4,2).toInt() >= 0 ){
+            if((m.startsWith("01") || m.startsWith("02")) && QStringRef(&msg,2,2).toInt() >= 0 && QStringRef(&msg,4,2).toInt() >= 0 ){
                 qDebug() << "test; se acepta" << msg;
-                emit msgReceived("^500100$");
+                emit msgReceived("^50"+m+"00$\n");
                 return;
             }
-            if(m.startsWith("02") && QStringRef(&msg,2,2).toInt() >= 0 && QStringRef(&msg,4,2).toInt() >= 0 ){
-                qDebug() << "test; se acepta" << msg;
-                emit msgReceived("^505200$");
-                return;
-            }
+
         }
 
 

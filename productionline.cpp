@@ -77,7 +77,7 @@ bool ProductionLine::ck50(QString msg)
     QStringRef sub(&msg,2,2);
     if(sub == "01" ){
         sub = QStringRef(&msg,6,2);
-        if(sub == "02") {
+        if(sub != "00") {
             emit error("error al intentar encender estaciones");
             return false;
         }else{
@@ -87,7 +87,7 @@ bool ProductionLine::ck50(QString msg)
 
     }else if(sub == "02"){
         sub = QStringRef(&msg,6,2);
-        if(sub == "02"){
+        if(sub != "00"){
             emit error("error al intentar apagar estaciones");
             return false;
         }else{

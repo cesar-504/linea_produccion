@@ -4,13 +4,18 @@
 
 ProductionLine::ProductionLine(QObject *parent) : QObject(parent)
 {
-
+    _db = new ProductionLineDb(this);
+    connect(this,&ProductionLine::entryOn,_db,&ProductionLineDb::entry);
+    connect(this,&ProductionLine::exitOn,_db,&ProductionLineDb::exit);
+    connect(this,&ProductionLine::started,_db,&ProductionLineDb::start);
+    connect(this,&ProductionLine::stopped,_db,&ProductionLineDb::stop);
 }
 
 void ProductionLine::setSender(ISender *newSender)
 {
     if(_sender==newSender) return;
     _sender=newSender;
+    _sender->setParent(this);
     connect(_sender,&ISender::msgReceived,this,&ProductionLine::msgHandler);
     connect(_sender,&ISender::error,this,&ProductionLine::errorHandler);
 
@@ -58,7 +63,7 @@ void ProductionLine::stop(int station, QJSValue callback)
     c.append(QString::number(station));
     c.append("$\n");
     auto conn = std::make_shared<QMetaObject::Connection>();
-    *conn = QObject::connect(this, &ProductionLine::stoped,
+    *conn = QObject::connect(this, &ProductionLine::stopped,
         [this,conn,&callback,station](int s){
             if(station == s && callback.isCallable())
                 callback.call();
@@ -77,7 +82,7 @@ bool ProductionLine::ck50(QString msg)
     QStringRef sub(&msg,2,2);
     if(sub == "01" ){
         sub = QStringRef(&msg,6,2);
-        if(sub == "02") {
+        if(sub != "00") {
             emit error("error al intentar encender estaciones");
             return false;
         }else{
@@ -87,12 +92,12 @@ bool ProductionLine::ck50(QString msg)
 
     }else if(sub == "02"){
         sub = QStringRef(&msg,6,2);
-        if(sub == "02"){
+        if(sub != "00"){
             emit error("error al intentar apagar estaciones");
             return false;
         }else{
             sub = QStringRef(&msg,4,2);
-            emit stoped(sub.toInt(nullptr,10));
+            emit stopped(sub.toInt(nullptr,10));
         }
     }
     return true;
@@ -103,18 +108,18 @@ bool ProductionLine::ck51(QString msg)
     if(!msg.startsWith("51")) return false;
     int from, to;
     QStringRef sub(&msg,2,2);
-    bool * b = nullptr;
-    bool * b2 = nullptr;
-    from = sub.toInt(b,10);
-    sub = QStringRef(&msg,6,2);
-    to  = sub.toInt(b2,10);
+    bool b =false;
+    bool b2 =false;
+    from = sub.toInt(&b,10);
+    sub = QStringRef(&msg,4,2);
+    to  = sub.toInt(&b2,10);
     if(b && b2){
         emit entryOn(from,to);
-        sendMsg("^505100$");
+        sendMsg("^50"+msg+"00$");
         return true;
     }else{
         emit warning("comando 51 no valido recibido : " + msg);
-        sendMsg("^505101$");
+        sendMsg("^50"+msg+"01$");
         return false;
     }
 
@@ -125,19 +130,19 @@ bool ProductionLine::ck52(QString msg)
     if(!msg.startsWith("52")) return false;
     int from, to;
     QStringRef sub(&msg,2,2);
-    bool * b = nullptr;
-    bool * b2 = nullptr;
-    from = sub.toInt(b,10);
-    sub = QStringRef(&msg,6,2);
-    to  = sub.toInt(b2,10);
+    bool b =false;
+    bool b2 =false;
+    from = sub.toInt(&b,10);
+    sub = QStringRef(&msg,4,2);
+    to  = sub.toInt(&b2,10);
     if(b && b2){
         emit exitOn(from,to);
-        sendMsg("^505200$");
-        return false;
+        sendMsg("^50"+msg+"00$");
+        return true;
     }else{
         emit warning("comando 52 no valido");
-        sendMsg("^505201$");
-        return true;
+        sendMsg("^50"+msg+"01$");
+        return false;
     }
 }
 

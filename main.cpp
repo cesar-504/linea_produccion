@@ -7,7 +7,8 @@
 #include "testsender.h"
 #include "productionline.h"
 #include <QDebug>
-
+#include "productionlinedb.h"
+#include "splogmodel.h"
 int main(int argc, char *argv[])
 {
 
@@ -15,6 +16,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     qmlRegisterType<ISender>();
     qmlRegisterType<SerialSender>("my", 1, 0, "SerialSender");
+    qmlRegisterType<SPLogModel>("my", 1, 0, "SPLogModel");
     ProductionLine  * p = new ProductionLine();
     p->setSender(new TestSender());
     QObject::connect(p,&ProductionLine::error,[](QString m ){qDebug() << "error " + m;});
@@ -26,7 +28,8 @@ int main(int argc, char *argv[])
     QObject::connect(p,&ProductionLine::exitOn,[](int from, int to){qDebug() << "exit "+ QString::number( from) +","+ QString::number(to);});
 
     QObject::connect(p,&ProductionLine::started,[](int i){qDebug() << "started " + QString::number( i);});
-    QObject::connect(p,&ProductionLine::stoped,[](int i ){qDebug() << "stopped  "+ QString::number( i);});
+    QObject::connect(p,&ProductionLine::stopped,[](int i ){qDebug() << "stopped  "+ QString::number( i);});
+
 
 
     p->start();
@@ -36,6 +39,7 @@ int main(int argc, char *argv[])
     p->stop(-3);
     p->stop(2);
     p->stop(3);
+
 
 
     QQmlApplicationEngine engine;

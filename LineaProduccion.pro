@@ -5,7 +5,8 @@ CONFIG += c++11
 SOURCES += main.cpp \
     serialsender.cpp \
     productionline.cpp \
-    productionlinedb.cpp
+    productionlinedb.cpp \
+    splogmodel.cpp
 
 RESOURCES += qml.qrc
 
@@ -44,4 +45,5 @@ HEADERS += \
     serialsender.h \
     productionline.h \
     testsender.h \
-    productionlinedb.h
+    productionlinedb.h \
+    splogmodel.h

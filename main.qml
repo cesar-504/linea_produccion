@@ -1,7 +1,7 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
-
+import my 1.0
 ApplicationWindow {
     visible: true
     width: 640
@@ -17,9 +17,18 @@ ApplicationWindow {
         }
 
         Page {
-            Label {
-                text: qsTr("Second page")
-                anchors.centerIn: parent
+            Text {
+                   text: list.model.count
+                }
+            ListView{
+                id : list
+                anchors.fill: parent
+                model: SPLogModel{
+
+                }
+                delegate: Text {
+                    text: "## " + from +" >> " +to +" "+ timeLog
+                }
             }
         }
     }

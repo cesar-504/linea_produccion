@@ -8,12 +8,14 @@
 #include "productionline.h"
 #include <QDebug>
 #include "productionlinedb.h"
+#include "splogmodel.h"
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication app(argc, argv);
     qmlRegisterType<ISender>();
     qmlRegisterType<SerialSender>("my", 1, 0, "SerialSender");
+    qmlRegisterType<SPLogModel>("my", 1, 0, "SPLogModel");
     ProductionLine  * p = new ProductionLine();
     p->setSender(new TestSender());
     QObject::connect(p,&ProductionLine::error,[](QString m ){qDebug() << "error " + m;});

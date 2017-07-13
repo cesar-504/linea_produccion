@@ -7,7 +7,7 @@
 #include "testsender.h"
 #include "productionline.h"
 #include <QDebug>
-
+#include "productionlinedb.h"
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -25,7 +25,8 @@ int main(int argc, char *argv[])
     QObject::connect(p,&ProductionLine::exitOn,[](int from, int to){qDebug() << "exit "+ QString::number( from) +","+ QString::number(to);});
 
     QObject::connect(p,&ProductionLine::started,[](int i){qDebug() << "started " + QString::number( i);});
-    QObject::connect(p,&ProductionLine::stoped,[](int i ){qDebug() << "stopped  "+ QString::number( i);});
+    QObject::connect(p,&ProductionLine::stopped,[](int i ){qDebug() << "stopped  "+ QString::number( i);});
+
 
 
     p->start();
@@ -35,6 +36,7 @@ int main(int argc, char *argv[])
     p->stop(-3);
     p->stop(2);
     p->stop(3);
+
 
 
     QQmlApplicationEngine engine;

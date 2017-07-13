@@ -4,13 +4,18 @@
 
 ProductionLine::ProductionLine(QObject *parent) : QObject(parent)
 {
-
+    _db = new ProductionLineDb(this);
+    connect(this,&ProductionLine::entryOn,_db,&ProductionLineDb::entry);
+    connect(this,&ProductionLine::exitOn,_db,&ProductionLineDb::exit);
+    connect(this,&ProductionLine::started,_db,&ProductionLineDb::start);
+    connect(this,&ProductionLine::stopped,_db,&ProductionLineDb::stop);
 }
 
 void ProductionLine::setSender(ISender *newSender)
 {
     if(_sender==newSender) return;
     _sender=newSender;
+    _sender->setParent(this);
     connect(_sender,&ISender::msgReceived,this,&ProductionLine::msgHandler);
     connect(_sender,&ISender::error,this,&ProductionLine::errorHandler);
 
@@ -58,7 +63,7 @@ void ProductionLine::stop(int station, QJSValue callback)
     c.append(QString::number(station));
     c.append("$\n");
     auto conn = std::make_shared<QMetaObject::Connection>();
-    *conn = QObject::connect(this, &ProductionLine::stoped,
+    *conn = QObject::connect(this, &ProductionLine::stopped,
         [this,conn,&callback,station](int s){
             if(station == s && callback.isCallable())
                 callback.call();
@@ -92,7 +97,7 @@ bool ProductionLine::ck50(QString msg)
             return false;
         }else{
             sub = QStringRef(&msg,4,2);
-            emit stoped(sub.toInt(nullptr,10));
+            emit stopped(sub.toInt(nullptr,10));
         }
     }
     return true;

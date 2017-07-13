@@ -1,10 +1,11 @@
-QT += qml quick serialport charts
+QT += qml quick serialport charts sql
 
 CONFIG += c++11
 
 SOURCES += main.cpp \
     serialsender.cpp \
-    productionline.cpp
+    productionline.cpp \
+    productionlinedb.cpp
 
 RESOURCES += qml.qrc
 
@@ -42,4 +43,5 @@ HEADERS += \
     isender.h \
     serialsender.h \
     productionline.h \
-    testsender.h
+    testsender.h \
+    productionlinedb.h

@@ -4,8 +4,11 @@
 #include <QObject>
 #include <QString>
 #include <QJSValue>
-#include "isender.h"
 #include <functional>
+#include "isender.h"
+#include "productionlinedb.h"
+
+
 class ProductionLine : public QObject
 {
     Q_OBJECT
@@ -41,7 +44,7 @@ signals:
     void entryOn(int from, int to);
     void exitOn(int from, int to);
     void started(int station=0);
-    void stoped(int station=0);
+    void stopped(int station=0);
 private:
     void sendMsg(const QString msg);
 
@@ -58,6 +61,7 @@ private slots:
 private:
     ISender * _sender;
     bool _isStart;
+    ProductionLineDb * _db;
 
 };
 

@@ -3,7 +3,7 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 Item {
     property var station : 0
-
+    property string images:["../images/check2.png", "../images/repair3.png"]
     id: item1
     Rectangle {
         id: rect1
@@ -93,6 +93,14 @@ Item {
                 anchors.rightMargin: 0
             }
         }
+        Repeater{
+            model: 7
+            Station{
+
+            }
+        }
+
     }
+
 
 }

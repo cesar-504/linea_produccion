@@ -13,5 +13,7 @@
         <file>images/repair2.png</file>
         <file>images/repair3.png</file>
         <file>images/time.png</file>
+        <file>images/icon-arrow-out.png</file>
+        <file>images/icon-arrow.png</file>
     </qresource>
 </RCC>

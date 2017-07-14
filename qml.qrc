@@ -4,5 +4,7 @@
         <file>qtquickcontrols2.conf</file>
         <file>views/StartPage.qml</file>
         <file>views/Station.qml</file>
+        <file>views/LogView/LogView.qml</file>
+        <file>views/LogView/IODelegate.qml</file>
     </qresource>
 </RCC>

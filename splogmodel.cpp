@@ -46,18 +46,6 @@ void SPLogModel::exit(const int from, const int to)
 
 void SPLogModel::entryExit(const int from, const int to, bool isEntry)
 {
-//    QSqlQuery query;
-//    query.prepare("insert into StationProductLog(fromStation,toStation,id_Product,id_LogAction) "
-//                  "values (?,?,?,?)");
-//    query.addBindValue(from);
-//    query.addBindValue(to);
-//    query.addBindValue(1);
-//    query.addBindValue((isEntry)? 1: 2);
-//    if(!query.exec()){
-//        qDebug() << query.lastError();
-//        emit error(query.lastError().text());
-//    }
-    //const QString timestamp = QString::number( QDateTime::currentSecsSinceEpoch());
     const QString timestamp = QDateTime::currentDateTime().toString(Qt::ISODate);
     QSqlRecord rec = record();
     rec.setValue("fromStation",from);
@@ -71,6 +59,6 @@ void SPLogModel::entryExit(const int from, const int to, bool isEntry)
         emit error(lastError().text());
         return;
     }
-    bool a =submitAll();
+    submitAll();
 }
 

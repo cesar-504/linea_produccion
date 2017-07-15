@@ -1,41 +1,62 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.2
 
-RowLayout {
+
+ColumnLayout{
     id:root
-    width: 250
-    height: 60
     implicitHeight: 60
     implicitWidth: 250
-    Image {
-        id: icon
-        sourceSize.height: 60
-        sourceSize.width: 60
+    RowLayout {
         Layout.fillHeight: true
-        Layout.fillWidth: false
-        fillMode: Image.PreserveAspectFit
-        source: "../../images/icon-arrow.png"
+        Image {
+            id: icon
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+            sourceSize.height: 32
+            sourceSize.width: 32
+            Layout.fillHeight: true
+            Layout.fillWidth: false
+            fillMode: Image.PreserveAspectFit
+            source: (action == 1) ? "../../images/arrow_down.png" : "../../images/arrow_up.png"
+        }
+
+        Text {
+            id: actiontext
+            text: (action == 1) ? "Entrada a #" + to : "Salida de #" + from
+
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            font.bold: true
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            font.pixelSize: 12
+        }
+
+
+
+        Text {
+            id: time
+            text: timeLog
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            font.pixelSize: 12
+        }
+
     }
 
-    Text {
-        id: actiontext
-        text: qsTr("Producto 1")
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
-        font.bold: true
-        Layout.fillHeight: true
-        Layout.fillWidth: true
-        font.pixelSize: 12
+    Rectangle {
+        anchors.left: parent.left
+        anchors.right: parent.right
+        width: parent.width
+        height: 1
+        color: "#bdb0b0"
+        opacity: 0.3
     }
 
-    Text {
-        id: time
-        text: qsTr("12:00")
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
-        Layout.fillHeight: true
-        Layout.fillWidth: true
-        font.pixelSize: 12
-    }
 
 }
+
+
+

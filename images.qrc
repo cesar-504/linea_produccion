@@ -15,5 +15,7 @@
         <file>images/time.png</file>
         <file>images/icon-arrow-out.png</file>
         <file>images/icon-arrow.png</file>
+        <file>images/arrow_up.png</file>
+        <file>images/arrow_down.png</file>
     </qresource>
 </RCC>

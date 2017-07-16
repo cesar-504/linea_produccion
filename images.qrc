@@ -1,19 +1,18 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/banda1.1.pdn</file>
-        <file>images/banda1.jpg</file>
-        <file>images/banda2.jpg</file>
-        <file>images/banda3.htm</file>
-        <file>images/check.png</file>
         <file>images/check2.png</file>
         <file>images/product1.png</file>
         <file>images/product2.png</file>
         <file>images/product3.png</file>
-        <file>images/repair.png</file>
         <file>images/repair2.png</file>
         <file>images/repair3.png</file>
         <file>images/time.png</file>
-        <file>images/icon-arrow-out.png</file>
-        <file>images/icon-arrow.png</file>
+        <file>images/repair3.1.png</file>
+        <file>images/banda1.1.png</file>
+        <file>images/entrada1.1.png</file>
+        <file>images/entrada1.2.png</file>
+        <file>images/salida1.1.png</file>
+        <file>images/salida1.2.png</file>
+        <file>images/time1.1.png</file>
     </qresource>
 </RCC>

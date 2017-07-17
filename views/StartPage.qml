@@ -7,7 +7,7 @@ Item {
     Rectangle{
         color: "#575656"
     anchors.fill: parent
- }
+
     Station {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: parent.height/3
@@ -17,6 +17,8 @@ Item {
         anchors.leftMargin:  parent.width/12
         anchors.top: parent.top
         anchors.topMargin: parent.height/19
-        }
-
+    }
+    InfoView{
+    }
+    }
 }

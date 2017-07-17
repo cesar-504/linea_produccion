@@ -2,7 +2,8 @@ import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 import my 1.0
-import "views"
+import "./views"
+import "./views/LogView"
 ApplicationWindow {
     visible: true
     width: 640
@@ -35,14 +36,14 @@ ApplicationWindow {
             }
 
         }
-        Loader{
-            id: initialPlaceHolder
-            source: "views/StartPage.qml"
-            active: true
-            visible: true
-        }
 
-    }
+        initialItem: StartPage{}
+
+}
+//        initialItem: LogView{
+
+//        }
+
 
 //    footer: TabBar {
 //        id: tabBar

@@ -65,7 +65,7 @@ void ProductionLineDb::createTables(){
                    "fromStation INTEGER NOT NULL,"
                    "toStation INTEGER NOT NULL,"
                    "id_Product INTEGER NOT NULL,"
-                   "timeLog TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,"
+                   "timeLog TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,"
                    "id_LogAction INTEGER NOT NULL,"
                    "PRIMARY KEY (id)"
                  ")"
@@ -77,7 +77,7 @@ void ProductionLineDb::createTables(){
                    "totalOnOff INTEGER NOT NULL,"
                    "onOff INTEGER NOT NULL,"
                    "id_Station INTEGER,"
-                   "timeLog TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,"
+                   "timeLog TIMESTAMP  DEFAULT CURRENT_TIMESTAMP NOT NULL,"
                    "PRIMARY KEY (id)"
                  ")"
                )){
@@ -127,30 +127,8 @@ void ProductionLineDb::stop(const int station)
     else onOff(false,false,station);
 }
 
-void ProductionLineDb::entry(const int from, const int to)
-{
-    entryExit(from,to,true);
-}
 
-void ProductionLineDb::exit(const int from, const int to)
-{
-    entryExit(from,to,false);
-}
 
-void ProductionLineDb::entryExit(const int from, const int to, bool isEntry)
-{
-    QSqlQuery query;
-    query.prepare("insert into StationProductLog(fromStation,toStation,id_Product,id_LogAction) "
-                  "values (?,?,?,?)");
-    query.addBindValue(from);
-    query.addBindValue(to);
-    query.addBindValue(1);
-    query.addBindValue((isEntry)? 1: 2);
-    if(!query.exec()){
-        qDebug() << query.lastError();
-        emit error(query.lastError().text());
-    }
-}
 
 void ProductionLineDb::onOff(const bool totalOnOff, const bool isOn, const int station)
 {

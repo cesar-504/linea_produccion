@@ -7,12 +7,14 @@
 #include <functional>
 #include "isender.h"
 #include "productionlinedb.h"
+#include "splogmodel.h"
 
 
 class ProductionLine : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(ISender * sender READ sender WRITE setSender NOTIFY senderChanged)
+    Q_PROPERTY(SPLogModel * spModel READ spModel WRITE setSpModel NOTIFY spModelChanged)
     Q_PROPERTY(bool isStart READ isStart WRITE setIsStart NOTIFY isStartChanged)
 
 //static
@@ -29,7 +31,8 @@ public:
     void setSender(ISender * newSender);
     bool isStart() const {return _isStart;}
     void setIsStart(const bool newIsStart);
-
+    SPLogModel * spModel() const {return _spModel;}
+    void setSpModel(SPLogModel * newSpModel);
 
     //public functions
     void start(int station=0, QJSValue callback = QJSValue());
@@ -41,10 +44,13 @@ signals:
     void log(QString msg);
     void senderChanged();
     void isStartChanged();
+    void spModelChanged();
     void entryOn(int from, int to);
     void exitOn(int from, int to);
     void started(int station=0);
     void stopped(int station=0);
+
+
 private:
     void sendMsg(const QString msg);
 
@@ -62,7 +68,7 @@ private:
     ISender * _sender;
     bool _isStart;
     ProductionLineDb * _db;
-
+    SPLogModel * _spModel;
 };
 
 #endif // PRODUCTIONLINE_H

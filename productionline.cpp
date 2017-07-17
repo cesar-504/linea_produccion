@@ -1,12 +1,11 @@
 #include "productionline.h"
 #include <QStringRef>
+#include <QDebug>
 #include <memory>
 
 ProductionLine::ProductionLine(QObject *parent) : QObject(parent)
 {
     _db = new ProductionLineDb(this);
-    connect(this,&ProductionLine::entryOn,_db,&ProductionLineDb::entry);
-    connect(this,&ProductionLine::exitOn,_db,&ProductionLineDb::exit);
     connect(this,&ProductionLine::started,_db,&ProductionLineDb::start);
     connect(this,&ProductionLine::stopped,_db,&ProductionLineDb::stop);
 }
@@ -28,6 +27,18 @@ void ProductionLine::setIsStart(const bool newIsStart)
     if(_isStart==newIsStart) return;
     _isStart=newIsStart;
     emit isStartChanged();
+
+}
+
+void ProductionLine::setSpModel(SPLogModel *newSpModel)
+{
+    if(_spModel==newSpModel) return;
+    _spModel=newSpModel;
+    _spModel->setParent(this);
+    qDebug() << "0000000000000000000";
+    connect(this,&ProductionLine::entryOn,_spModel,&SPLogModel::entry);
+    connect(this,&ProductionLine::exitOn,_spModel,&SPLogModel::exit);
+    emit spModelChanged();
 
 }
 

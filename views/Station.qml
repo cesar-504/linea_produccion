@@ -79,8 +79,8 @@ Rectangle {
         model: app.pl.products
         Image {
             id: phaseP
-            width: 135
-            height: 122
+            width: 40
+            height: 40
             fillMode: Image.PreserveAspectFit
             source: "../images/product2.png"
         }
@@ -90,14 +90,18 @@ Rectangle {
 
     Item {
         id: points
+        anchors.rightMargin: 0
+        anchors.bottomMargin: 0
+        anchors.leftMargin: 0
+        anchors.topMargin: 0
         anchors.fill: parent
 
         Image {
             id: p1
             x: 8
             y: 134
-            width: 45
-            height: 41
+            width: 40
+            height: 40
             fillMode: Image.PreserveAspectFit
             source: "../images/product2.png"
         }
@@ -106,8 +110,8 @@ Rectangle {
             id: p9
             x: 8
             y: 291
-            width: 45
-            height: 41
+            width: 40
+            height: 40
             fillMode: Image.PreserveAspectFit
             source: "../images/product2.png"
         }
@@ -116,8 +120,8 @@ Rectangle {
             id: p8
             x: 141
             y: 291
-            width: 45
-            height: 41
+            width: 40
+            height: 40
             fillMode: Image.PreserveAspectFit
             source: "../images/product2.png"
         }
@@ -126,8 +130,8 @@ Rectangle {
             id: p7
             x: 248
             y: 291
-            width: 45
-            height: 41
+            width: 40
+            height: 40
             fillMode: Image.PreserveAspectFit
             source: "../images/product2.png"
         }
@@ -136,8 +140,8 @@ Rectangle {
             id: p6
             x: 418
             y: 291
-            width: 45
-            height: 41
+            width: 40
+            height: 40
             fillMode: Image.PreserveAspectFit
             source: "../images/product2.png"
         }
@@ -146,8 +150,8 @@ Rectangle {
             id: p5
             x: 625
             y: 134
-            width: 45
-            height: 41
+            width: 40
+            height: 40
             fillMode: Image.PreserveAspectFit
             source: "../images/product2.png"
         }
@@ -156,8 +160,8 @@ Rectangle {
             id: p4
             x: 494
             y: 134
-            width: 45
-            height: 41
+            width: 40
+            height: 40
             fillMode: Image.PreserveAspectFit
             source: "../images/product2.png"
         }
@@ -166,8 +170,8 @@ Rectangle {
             id: p3
             x: 418
             y: 134
-            width: 45
-            height: 41
+            width: 40
+            height: 40
             fillMode: Image.PreserveAspectFit
             source: "../images/product2.png"
         }
@@ -176,8 +180,8 @@ Rectangle {
             id: p2
             x: 248
             y: 134
-            width: 45
-            height: 41
+            width: 40
+            height: 40
             fillMode: Image.PreserveAspectFit
             source: "../images/product2.png"
         }

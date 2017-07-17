@@ -4,9 +4,11 @@ import QtQuick.Layouts 1.3
 Item {
     property int station : 0
     id: item1
-
+    Rectangle{
+        color: "#575656"
+    anchors.fill: parent
+ }
     Station {
-
         anchors.bottom: parent.bottom
         anchors.bottomMargin: parent.height/3
         anchors.right: parent.right

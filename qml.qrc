@@ -7,7 +7,7 @@
         <file>views/LogView/LogView.qml</file>
         <file>views/LogView/IODelegate.qml</file>
         <file>views/InfoView.qml</file>
-        <file>views/Menu.qml</file>
         <file>views/OnPoint.qml</file>
+        <file>views/ButtonsOnOff.qml</file>
     </qresource>
 </RCC>

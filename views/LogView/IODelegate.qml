@@ -22,6 +22,7 @@ ColumnLayout{
 
         Text {
             id: actiontext
+            color: "#95f7a0"
             text: (action == 1) ? "Entrada a #" + to : "Salida de #" + from
 
             verticalAlignment: Text.AlignVCenter
@@ -36,6 +37,7 @@ ColumnLayout{
 
         Text {
             id: time
+            color: "#9df99d"
             text: timeLog
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter

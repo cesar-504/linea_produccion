@@ -148,7 +148,9 @@ bool ProductionLine::ck51(QString msg)
         if(from==0){
             p = new Product(this);
             //Falta sacar id de bd
-            p->setIdNum(1);
+            static int staticIdNum=1;
+            p->setIdNum(staticIdNum);
+            staticIdNum++;
             //
             p->setStation(_stations.at(to-1));
             _products.append(p);
@@ -174,6 +176,7 @@ bool ProductionLine::ck51(QString msg)
         }
         emit productsChanged();
         emit entryOn(from,to);
+        emit move(from,to,p->idNum());
         sendMsg("^50"+msg+"00$");
         return true;
     }else{

@@ -16,5 +16,7 @@
         <file>images/time1.1.png</file>
         <file>images/arrow_up.png</file>
         <file>images/arrow_down.png</file>
+        <file>images/back.png</file>
+        <file>images/drawer.png</file>
     </qresource>
 </RCC>

@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QTimer>
 #include "isender.h"
+#include <random>
 class TestSender : public ISender
 {
     Q_OBJECT
@@ -14,7 +15,7 @@ class TestSender : public ISender
 public:
     explicit TestSender(QObject *parent = nullptr): ISender(parent), _mode("normal"){
         _timer = new QTimer(this);
-        _timer->setInterval(2000);
+        _timer->setInterval(700);
         connect(_timer,&QTimer::timeout,this,&TestSender::simulation);
     }
 
@@ -59,13 +60,34 @@ public:
 private slots:
     void simulation(){
         if(_exit){
-            emit msgReceived("^520"+QString::number(_index) +"0"+QString::number(_index+1) +"$");
-            _index++;
-        }else
-            emit msgReceived("^510"+QString::number(_index-1) +"0"+QString::number(_index) +"$");
+            std::mt19937 eng(rd()); // seed the generator
+            std::uniform_int_distribution<> distr(1, 100); // define the range
+            if(_index == 3 && distr(eng) >60){
+                 emit msgReceived("^520"+QString::number(_index) +"0"+QString::number(6) +"$");
+                _from=_index;
+                _index=6;
 
+            }else if(_index == 7 && distr(eng) >30){
+                emit msgReceived("^520"+QString::number(_index) +"0"+QString::number(2) +"$");
+               _from=_index;
+               _index=2;
+            }else{
+                emit msgReceived("^520"+QString::number(_index) +"0"+QString::number(_index+1) +"$");
+                _index++;
+                _from=-1;
+                if(_index==6 || _index==10){ _index=1; _from=-1;}
+
+            }
+
+
+        }else{
+            if(_from<0)
+                emit msgReceived("^510"+QString::number(_index-1) +"0"+QString::number(_index) +"$");
+            else
+                emit msgReceived("^510"+QString::number(_from) +"0"+QString::number(_index) +"$");
+        }
         _exit= !_exit;
-        if(_index==6) _index=1;
+
 
 
     }
@@ -87,9 +109,11 @@ private:
     QString  _mode;
     QTimer * _timer;
     int _index=1;
+    int _from=-1;
     bool _exit=false;
 
     bool isStart=false;
+    std::random_device rd;
 
 };
 

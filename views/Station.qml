@@ -29,10 +29,10 @@ Frame {
                 sourceSize.width: width
                 antialiasing: true
                 Behavior on x{
-                     NumberAnimation { duration: 500 }
+                     NumberAnimation { duration: 500 ;  easing.type: Easing.InCubic;}
                 }
                 Behavior on y{
-                     NumberAnimation { duration: 500 }
+                     NumberAnimation { duration: 500; easing.type: Easing.InCubic;  }
                 }
 
             }

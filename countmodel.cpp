@@ -32,10 +32,10 @@ void CountModel::update()
 {
     QSqlQuery query;
     query.exec("select"
-               "((select count(*) from StationProductLog where toStation = 5 ) +"
-               "(select count(*) from StationProductLog where toStation = 9)) as totalPr,"
-               "(select count(*) from StationProductLog where toStation = 5 ) as totalOkPr, "
-               "(select count(*) from StationProductLog where toStation = 9 ) as totalErroPr"
+               "((select count(*) from StationProductLog where toStation = 5 and id_LogAction =1 ) +"
+               "(select count(*) from StationProductLog where toStation = 9 and id_LogAction =1)) as totalPr,"
+               "(select count(*) from StationProductLog where toStation = 5 and id_LogAction =1 ) as totalOkPr, "
+               "(select count(*) from StationProductLog where toStation = 9 and id_LogAction =1) as totalErroPr"
     );
     setQuery(query);
 

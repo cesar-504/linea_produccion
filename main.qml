@@ -90,6 +90,7 @@ ApplicationWindow {
     // este se actualiza junto con el real
     ProductionLine{
         id:_pl
+        isStart:false
         spModel: SPLogModel{
             id:spmodel
         }

@@ -71,6 +71,11 @@ void ProductionLine::start(int station, QJSValue callback)
             disconnect(*conn);
         });
     sendMsg(c);
+    if(station==0){
+        setStationOnOff(true);
+        setIsStart(true);
+    }
+
 
 }
 
@@ -92,6 +97,10 @@ void ProductionLine::stop(int station, QJSValue callback)
             disconnect(*conn);
         });
     sendMsg(c);
+    if(station==0){
+        setStationOnOff(false);
+        setIsStart(false);
+    }
 }
 void ProductionLine::sendMsg(const QString msg)
 {

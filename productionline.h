@@ -56,8 +56,8 @@ public:
 
 
     //public functions
-    void start(int station=0, QJSValue callback = QJSValue());
-    void stop(int station=0, QJSValue callback = QJSValue());
+    Q_INVOKABLE void start(int station=0, QJSValue callback = QJSValue());
+    Q_INVOKABLE void stop(int station=0, QJSValue callback = QJSValue());
 
 signals:
     void error(QString error);

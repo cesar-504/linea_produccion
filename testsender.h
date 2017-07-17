@@ -15,7 +15,6 @@ public:
     explicit TestSender(QObject *parent = nullptr): ISender(parent), _mode("normal"){
         _timer = new QTimer(this);
         _timer->setInterval(2000);
-        _timer->start();
         connect(_timer,&QTimer::timeout,this,&TestSender::simulation);
     }
 
@@ -34,6 +33,11 @@ public:
             if(m.startsWith("00")) return;
             if((m.startsWith("01") || m.startsWith("02")) && QStringRef(&msg,2,2).toInt() >= 0 && QStringRef(&msg,4,2).toInt() >= 0 ){
                 qDebug() << "test; se acepta" << msg;
+                if(m.startsWith("01"))
+                    _timer->start();
+                else
+                    _timer->stop();
+
                 emit msgReceived("^50"+m+"00$\n");
                 return;
             }
@@ -66,6 +70,15 @@ private slots:
 
     }
 
+    void startStop(bool b){
+        isStart = b;
+        if(b)
+            _timer->start();
+        else
+            _timer->stop();
+
+    }
+
 signals:
     void modeChanged();
 
@@ -75,6 +88,8 @@ private:
     QTimer * _timer;
     int _index=1;
     bool _exit=false;
+
+    bool isStart=false;
 
 };
 

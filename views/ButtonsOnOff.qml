@@ -27,8 +27,9 @@ Item {
                 Layout.fillWidth: true
             }
             Button{
-                text: "Prender/Apagar"
+                text: (app.pl.isStart) ? "Apagar" :"Encender"
                 Layout.fillWidth: true
+                onClicked:(app.pl.isStart) ? app.pl.stop() : app.pl.start();
 
             }
         }

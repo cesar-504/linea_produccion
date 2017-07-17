@@ -41,7 +41,6 @@ Page {
                 width:500
                 height:100
                 Layout.fillWidth: true
-                x:station.x
             }
 
         }

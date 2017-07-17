@@ -35,12 +35,52 @@ ApplicationWindow {
             }
 
         }
-        initialItem: LogView{
+        initialItem: Item {
+
+            ProductionLine{
+                id:pl
+                spModel: SPLogModel{
+                    id:spmodel
+                }
+                sender: TestSender{
+
+                }
+                Station{
+                    id:s1
+                    idNum: 1
+                }
+                Station{
+                    id:s2
+                    idNum: 2
+                }
+                Station{
+                    id:s3
+                    idNum: 3
+                }
+                Station{
+                    id:s4
+                    idNum: 4
+                }
+                Station{
+                    id:s5
+                    idNum: 5
+                    type: Station.Exit
+                }
+
+            }
+
+            ListView{
+                model: pl.stations
+                anchors.fill: parent
+                delegate: ItemDelegate{
+                    text: idNum + "," + productCount();
+                }
+            }
+
 
         }
 
     }
-
 //    footer: TabBar {
 //        id: tabBar
 //        currentIndex: swipeView.currentIndex

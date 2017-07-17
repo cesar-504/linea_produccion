@@ -25,6 +25,9 @@ Frame {
                 z:-10
                 fillMode: Image.PreserveAspectFit
                 source: "../images/product2.png"
+                sourceSize.height: height
+                sourceSize.width: width
+                antialiasing: true
                 Behavior on x{
                      NumberAnimation { duration: 500 }
                 }
@@ -41,6 +44,9 @@ Frame {
         y: 100
         width: 135
         height: 122
+        sourceSize.height: height
+        sourceSize.width: width
+        antialiasing: true
         fillMode: Image.PreserveAspectFit
         source: "../images/entrada1.1.png"
         OnPoint{}
@@ -52,7 +58,9 @@ Frame {
         y: 144
         width: 398
         height: 100
-
+        sourceSize.height: height
+        sourceSize.width: width
+        antialiasing: true
         fillMode: Image.PreserveAspectFit
         source: "../images/banda1.1.png"
     }
@@ -63,6 +71,9 @@ Frame {
         y: 58
         width: 75
         height: 75
+        sourceSize.height: height
+        sourceSize.width: width
+        antialiasing: true
         source: "../images/check2.png"
 
         OnPoint{}
@@ -74,6 +85,9 @@ Frame {
         y: 100
         width: 132
         height: 122
+        sourceSize.height: height
+        sourceSize.width: width
+        antialiasing: true
         fillMode: Image.PreserveAspectFit
         source: "../images/salida1.1.png"
         OnPoint{}
@@ -85,6 +99,9 @@ Frame {
         y: 240
         width: 398
         height: 56
+        sourceSize.height: height
+        sourceSize.width: width
+        antialiasing: true
         fillMode: Image.PreserveAspectFit
         source: "../images/banda1.1.png"
     }
@@ -95,6 +112,9 @@ Frame {
         y: 338
         width: 75
         height: 75
+        sourceSize.height: height
+        sourceSize.width: width
+        antialiasing: true
         fillMode: Image.PreserveAspectFit
         source: "../images/repair3.png"
 
@@ -123,6 +143,7 @@ Frame {
             y: 134
             width: 40
             height: 40
+
             fillMode: Image.PreserveAspectFit
             source: "../images/product2.png"
             Component.onCompleted: visible=false;

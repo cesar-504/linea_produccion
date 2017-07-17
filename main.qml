@@ -12,6 +12,10 @@ ApplicationWindow {
     height: 800
     title: qsTr("Linea de producción")
     header: ToolBar {
+        background: Rectangle{
+            color: "#060511"
+        }
+
         Material.foreground: "#0b146f"
         RowLayout{
             spacing: 20
@@ -33,7 +37,7 @@ ApplicationWindow {
                     }
                 }
             }
-            Label {
+            Text {
                 id: titleLabel
                 text: listView.currentItem ? listView.currentItem.text : "Linea de producción"
                 font.pixelSize: 20
@@ -41,6 +45,7 @@ ApplicationWindow {
                 horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
                 Layout.fillWidth: true
+                color:"#eee"
             }
         }
         Drawer {

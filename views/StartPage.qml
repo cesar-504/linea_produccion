@@ -9,8 +9,9 @@ Item {
     anchors.fill: parent
 
     Station {
+        id: station
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: parent.height/3
+        anchors.bottomMargin: parent.height/3.4
         anchors.right: parent.right
         anchors.rightMargin:  parent.width/12
         anchors.left: parent.left
@@ -19,6 +20,16 @@ Item {
         anchors.topMargin: parent.height/19
     }
     InfoView{
+        x: 34
+        y: 291
+        width: 573
+        height: 174
+        anchors.top: station.bottom
+        anchors.topMargin: 9
+        anchors.right: parent.right
+        anchors.rightMargin:  parent.width/12
+        anchors.left: parent.left
+        anchors.leftMargin:  parent.width/12
     }
     }
 }

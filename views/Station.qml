@@ -3,10 +3,11 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 
 
-Rectangle {
+Frame {
     id: rect
-    color: "#96969b"
+   // color: "#96969b"
     height: 500
+    //color: "#eee"
     width:  700
     property var points: [p1,p2,p3,p4,p5,p6,p7,p8,p9]
     Item{

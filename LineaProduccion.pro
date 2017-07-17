@@ -8,7 +8,8 @@ SOURCES += main.cpp \
     productionlinedb.cpp \
     splogmodel.cpp \
     station.cpp \
-    product.cpp
+    product.cpp \
+    countmodel.cpp
 
 RESOURCES += qml.qrc \
     images.qrc
@@ -51,4 +52,5 @@ HEADERS += \
     productionlinedb.h \
     splogmodel.h \
     station.h \
-    product.h
+    product.h \
+    countmodel.h

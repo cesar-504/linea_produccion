@@ -1,17 +1,44 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
-Item {
+import './LogView'
+Page {
     id: item1
-    Rectangle{
-        color: "#575656"
-    anchors.fill: parent
-
-    Station {
-        anchors.centerIn: parent
-
+    padding: 20
+    background: Rectangle{
+        color: "#eee"
     }
-    InfoView{
-    }
+    ColumnLayout{
+        anchors.fill: parent
+
+        RowLayout{
+            height: 500
+            width:  1200
+            LogView{
+                width: 300
+                height: 480
+            }
+            Item {
+                height: 500
+                width:  700
+                Station {
+                    height: 500
+                    width:  700
+                }
+            }
+            CountView{
+                height: 500
+                width:  300
+            }
+
+        }
+        RowLayout{
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
+
+        }
+
+
     }
 }

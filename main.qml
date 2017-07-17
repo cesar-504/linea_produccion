@@ -7,8 +7,8 @@ import "./views/LogView"
 ApplicationWindow {
     id:app
     visible: true
-    width: 640
-    height: 480
+    width: 1300
+    height: 800
     title: qsTr("Linea de producción")
 //
     property bool isLandscape: width > height
@@ -90,6 +90,9 @@ ApplicationWindow {
         initialItem: Vi.StartPage{
 
         }
+
+
+
 
     }
 

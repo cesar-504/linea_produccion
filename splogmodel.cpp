@@ -60,5 +60,6 @@ void SPLogModel::entryExit(const int from, const int to, bool isEntry)
         return;
     }
     submitAll();
+    emit updated();
 }
 

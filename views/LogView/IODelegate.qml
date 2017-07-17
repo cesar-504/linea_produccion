@@ -6,7 +6,7 @@ import QtQuick.Controls 2.2
 ColumnLayout{
     id:root
     implicitHeight: 60
-    implicitWidth: 250
+    implicitWidth: 300
     RowLayout {
         Layout.fillHeight: true
         Image {

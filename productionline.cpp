@@ -6,8 +6,11 @@
 ProductionLine::ProductionLine(QObject *parent) : QObject(parent)
 {
     _db = new ProductionLineDb(this);
+
     connect(this,&ProductionLine::started,_db,&ProductionLineDb::start);
     connect(this,&ProductionLine::stopped,_db,&ProductionLineDb::stop);
+    _countModel = new CountModel(this);
+
 
 }
 
@@ -40,6 +43,8 @@ void ProductionLine::setSpModel(SPLogModel *newSpModel)
     connect(this,&ProductionLine::entryOn,_spModel,&SPLogModel::entry);
     connect(this,&ProductionLine::exitOn,_spModel,&SPLogModel::exit);
     emit spModelChanged();
+
+    connect(_spModel,&SPLogModel::updated,_countModel, &CountModel::update);
 
 }
 

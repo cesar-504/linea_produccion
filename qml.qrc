@@ -9,5 +9,6 @@
         <file>views/InfoView.qml</file>
         <file>views/Menu.qml</file>
         <file>views/OnPoint.qml</file>
+        <file>views/CountView.qml</file>
     </qresource>
 </RCC>

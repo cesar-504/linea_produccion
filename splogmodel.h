@@ -15,6 +15,8 @@ private:
     void entryExit(const int from , const int to,bool isEntry);
 signals:
     void error(QString errorMsg);
+    void updated();
+
 public slots:
     Q_INVOKABLE void entry(const int from , const int to);
     void exit(const int from , const int to);

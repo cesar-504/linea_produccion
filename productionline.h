@@ -12,7 +12,7 @@
 #include "splogmodel.h"
 #include "station.h"
 #include "product.h"
-
+#include "countmodel.h"
 
 class ProductionLine : public QObject
 {
@@ -22,6 +22,9 @@ class ProductionLine : public QObject
     Q_PROPERTY(bool isStart READ isStart WRITE setIsStart NOTIFY isStartChanged)
     Q_PROPERTY(QQmlListProperty<Station> stations READ stations  NOTIFY stationsChanged)
     Q_PROPERTY(QQmlListProperty<Product> products READ products /*WRITE setProducts*/ NOTIFY productsChanged)
+    Q_PROPERTY(CountModel * countModel READ countModel NOTIFY countModelChanged)
+
+
 
 
 
@@ -48,7 +51,7 @@ public:
     void setSpModel(SPLogModel * newSpModel);
     QQmlListProperty<Station> stations() {return QQmlListProperty<Station>(this,_stations);}
     QQmlListProperty<Product> products() {return QQmlListProperty<Product> (this,_products);}
-
+    CountModel * countModel() const {return _countModel;}
 
 
 
@@ -70,6 +73,9 @@ signals:
     void stopped(int station=0);
     void stationsChanged();
     void productsChanged();
+
+    void countModelChanged();
+
 private:
     void sendMsg(const QString msg);
     Product * productInStation(int idStation);
@@ -91,6 +97,7 @@ private:
     ISender * _sender;
     bool _isStart;
     ProductionLineDb * _db;
+    CountModel * _countModel;
     SPLogModel * _spModel;
     QList<Station *> _stations;
     QList<Product *> _products;

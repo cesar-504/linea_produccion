@@ -8,7 +8,7 @@ import "./views/LogView"
 ApplicationWindow {
     id:app
     visible: true
-    width: 1300
+    width: 1350
     height: 800
     title: qsTr("Linea de producción")
     header: ToolBar {

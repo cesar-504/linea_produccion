@@ -35,10 +35,13 @@ Page {
         RowLayout{
             Layout.fillWidth: true
             Layout.fillHeight: true
-
+            ButtonsOnOff{
+                anchors.top: station.bottom
+                width:500
+                height:100
+                x:station.x
+            }
 
         }
-
-
     }
 }

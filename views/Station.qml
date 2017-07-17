@@ -104,6 +104,8 @@ Rectangle {
             height: 40
             fillMode: Image.PreserveAspectFit
             source: "../images/product2.png"
+            Component.onCompleted: visible=false;
+
         }
 
         Image {
@@ -114,6 +116,7 @@ Rectangle {
             height: 40
             fillMode: Image.PreserveAspectFit
             source: "../images/product2.png"
+            Component.onCompleted: visible=false;
         }
 
         Image {
@@ -124,6 +127,7 @@ Rectangle {
             height: 40
             fillMode: Image.PreserveAspectFit
             source: "../images/product2.png"
+            Component.onCompleted: visible=false;
         }
 
         Image {
@@ -134,6 +138,7 @@ Rectangle {
             height: 40
             fillMode: Image.PreserveAspectFit
             source: "../images/product2.png"
+            Component.onCompleted: visible=false;
         }
 
         Image {
@@ -144,6 +149,7 @@ Rectangle {
             height: 40
             fillMode: Image.PreserveAspectFit
             source: "../images/product2.png"
+            Component.onCompleted: visible=false;
         }
 
         Image {
@@ -154,6 +160,7 @@ Rectangle {
             height: 40
             fillMode: Image.PreserveAspectFit
             source: "../images/product2.png"
+            Component.onCompleted: visible=false;
         }
 
         Image {
@@ -164,6 +171,7 @@ Rectangle {
             height: 40
             fillMode: Image.PreserveAspectFit
             source: "../images/product2.png"
+            Component.onCompleted: visible=false;
         }
 
         Image {
@@ -174,6 +182,7 @@ Rectangle {
             height: 40
             fillMode: Image.PreserveAspectFit
             source: "../images/product2.png"
+            Component.onCompleted: visible=false;
         }
 
         Image {
@@ -184,6 +193,7 @@ Rectangle {
             height: 40
             fillMode: Image.PreserveAspectFit
             source: "../images/product2.png"
+            Component.onCompleted: visible=false;
         }
     }
 

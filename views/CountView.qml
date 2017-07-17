@@ -48,6 +48,30 @@ Item {
                     Layout.fillHeight: true
                     Layout.fillWidth: true
                 }
+                RowLayout {
+                    id: rowLayout11
+                    width: 100
+                    height: 100
+                    Layout.fillWidth: true
+
+                    Text {
+                        id: text21
+                        text: qsTr("Productos Reparados: ")
+                        Layout.fillHeight: true
+                        font.pointSize: 14
+                        Layout.fillWidth: false
+                    }
+
+                    Text {
+                        id: text51
+                        text: totalRepairPr-totalErrorPr
+                        horizontalAlignment: Text.AlignRight
+                        Layout.fillHeight: true
+                        font.pointSize: 14
+                        Layout.fillWidth: true
+                    }
+                }
+
 
                 RowLayout {
                     id: rowLayout

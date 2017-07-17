@@ -49,7 +49,7 @@ Frame {
         antialiasing: true
         fillMode: Image.PreserveAspectFit
         source: "../images/entrada1.1.png"
-        OnPoint{}
+        OnPoint{isOn:app.pl.isStart}
     }
 
     Image {
@@ -76,7 +76,7 @@ Frame {
         antialiasing: true
         source: "../images/check2.png"
 
-        OnPoint{}
+        OnPoint{isOn:app.pl.isStart}
     }
 
     Image {
@@ -90,7 +90,7 @@ Frame {
         antialiasing: true
         fillMode: Image.PreserveAspectFit
         source: "../images/salida1.1.png"
-        OnPoint{}
+        OnPoint{isOn:app.pl.isStart}
     }
 
     Image {
@@ -118,7 +118,7 @@ Frame {
         fillMode: Image.PreserveAspectFit
         source: "../images/repair3.png"
 
-        OnPoint{}
+        OnPoint{isOn:app.pl.isStart}
     }
     Connections{
         target: app.pl

@@ -25,6 +25,7 @@ QHash<int, QByteArray> CountModel::roleNames() const
     names[Qt::UserRole] = "totalPr";
     names[Qt::UserRole + 1] = "totalOkPr";
     names[Qt::UserRole + 2] = "totalErrorPr";
+    names[Qt::UserRole + 3] = "totalRepairPr";
     return names;
 }
 
@@ -35,7 +36,8 @@ void CountModel::update()
                "((select count(*) from StationProductLog where toStation = 5 and id_LogAction =1 ) +"
                "(select count(*) from StationProductLog where toStation = 9 and id_LogAction =1)) as totalPr,"
                "(select count(*) from StationProductLog where toStation = 5 and id_LogAction =1 ) as totalOkPr, "
-               "(select count(*) from StationProductLog where toStation = 9 and id_LogAction =1) as totalErroPr"
+               "(select count(*) from StationProductLog where toStation = 9 and id_LogAction =1) as totalErroPr,"
+               "(select count(*) from StationProductLog where toStation = 7 and id_LogAction =1) as totalErroPr"
     );
     setQuery(query);
 

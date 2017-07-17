@@ -27,7 +27,9 @@ public:
         Exit,
         ExitError,
         Verification,
-        Repair
+        Repair,
+        Band,
+
     };
     Q_ENUM(Types)
     explicit Station(QObject *parent = nullptr);

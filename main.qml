@@ -2,8 +2,10 @@ import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 import my 1.0
+import "./views" as Vi
 import "./views/LogView"
 ApplicationWindow {
+    id:app
     visible: true
     width: 640
     height: 480
@@ -11,6 +13,56 @@ ApplicationWindow {
 //
     property bool isLandscape: width > height
     property bool isSmallDevice: !isLandscape && width < 360
+    property alias pl:_pl
+
+    //modelo de la linea de produccion en c++
+    // este se actualiza junto con el real
+    ProductionLine{
+        id:_pl
+        spModel: SPLogModel{
+            id:spmodel
+        }
+        sender: TestSender{}
+        //Stations c++
+        Station{
+            idNum: 1
+            type: Station.Entry
+        }
+        Station{
+            idNum: 2
+            type: Station.Band
+        }
+        Station{
+            idNum: 3
+            type: Station.Verification
+        }
+        Station{
+            idNum: 4
+            type: Station.Band
+        }
+        Station{
+            idNum: 5
+            type: Station.Exit
+        }
+        //las de abajo
+        Station{
+            idNum: 6
+            type: Station.Band
+        }
+        Station{
+            idNum: 3
+            type: Station.Repair
+        }
+        Station{
+            idNum: 4
+            type: Station.Band
+        }
+        Station{
+            idNum: 5
+            type: Station.ExitError
+        }
+    }
+
 
     StackView {
         id: swipeView
@@ -35,60 +87,11 @@ ApplicationWindow {
             }
 
         }
-        initialItem: Item {
-
-            ProductionLine{
-                id:pl
-                spModel: SPLogModel{
-                    id:spmodel
-                }
-                sender: TestSender{
-
-                }
-                Station{
-                    id:s1
-                    idNum: 1
-                }
-                Station{
-                    id:s2
-                    idNum: 2
-                }
-                Station{
-                    id:s3
-                    idNum: 3
-                }
-                Station{
-                    id:s4
-                    idNum: 4
-                }
-                Station{
-                    id:s5
-                    idNum: 5
-                    type: Station.Exit
-                }
-
-            }
-
-            ListView{
-                model: pl.stations
-                anchors.fill: parent
-                delegate: ItemDelegate{
-                    text: idNum + "," + productCount();
-                }
-            }
-
+        initialItem: Vi.StartPage{
 
         }
 
     }
-//    footer: TabBar {
-//        id: tabBar
-//        currentIndex: swipeView.currentIndex
-//        TabButton {
-//            text: qsTr("First")
-//        }
-//        TabButton {
-//            text: qsTr("Second")
-//        }
-//    }
+
 }
+

@@ -93,6 +93,16 @@ void ProductionLine::sendMsg(const QString msg)
     _sender->sendMsg(msg);
 }
 
+Product *ProductionLine::productInStation(int idStation)
+{
+    for(Product * p : _products){
+        if(p->station() == _stations.at(idStation)){
+            return p;
+        }
+    }
+    return nullptr;
+}
+
 bool ProductionLine::ck50(QString msg)
 {
     if(!msg.startsWith("50")) return false;
@@ -134,30 +144,35 @@ bool ProductionLine::ck51(QString msg)
     sub = QStringRef(&msg,4,2);
     to  = sub.toInt(&b2,10);
     if(b && b2){
-        int pId =-1;
+        Product * p;
         if(from==0){
-            Product * p = new Product(this);
+            p = new Product(this);
+            //Falta sacar id de bd
             p->setIdNum(1);
-            _stations.at(0)->addProduct(p);
-            pId=p->idNum();
+            //
+            p->setStation(_stations.at(to-1));
+            _products.append(p);
 
         } else {
-            pId = _stations.at(from-1)->moveToStation(_stations.at(to-1));
-
+            p = productInStation(from-1);
+            p->setStation(_stations.at(to -1));
         }
         if(_stations.at(to-1)->type() == Station::Exit ||
                 _stations.at(to-1)->type() == Station::ExitError){
 
             QTimer::singleShot(_stations.at(to-1)->msToDel(),
-                [this,to,pId](){
-                    this->_stations.at(to-1)->deleteProduct(pId);
-                    emit this->stationsChanged();
+                [this,to,p](){
+                    for(int i=0;i<_products.size();++i){
+                        if(_products.at(i) == p){
+                            _products.removeAt(i);
+                            emit  this->productsChanged();
+                        }
+                    }
                 }
             );
 
         }
-
-        emit stationsChanged();
+        emit productsChanged();
         emit entryOn(from,to);
         sendMsg("^50"+msg+"00$");
         return true;
@@ -181,10 +196,6 @@ bool ProductionLine::ck52(QString msg)
     sub = QStringRef(&msg,4,2);
     to  = sub.toInt(&b2,10);
     if(b && b2){
-        if(to==0){
-            _stations.at(from-1)->deleteProduct();
-            emit stationsChanged();
-        }
         emit exitOn(from,to);
         sendMsg("^50"+msg+"00$");
         return true;

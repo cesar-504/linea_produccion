@@ -54,43 +54,43 @@ void Station::setIsOn(const bool newIsOn)
 
 //}
 
-void Station::addProduct(Product *p)
-{
-    _productList.append(p);
-    emit productListChanged();
-}
+//void Station::addProduct(Product *p)
+//{
+//    _productList.append(p);
+//    emit productListChanged();
+//}
 
-int Station::moveToStation(Station *s)
-{
-    if(_productList.isEmpty()){
-        qDebug()<<"intentando mover desde estación vacia";
-        return -1;
-    }
-    auto p = _productList.takeFirst();
-    s->addProduct( p );
-    emit productListChanged();
-    return p->idNum();
+//int Station::moveToStation(Station *s)
+//{
+//    if(_productList.isEmpty()){
+//        qDebug()<<"intentando mover desde estación vacia";
+//        return -1;
+//    }
+//    auto p = _productList.takeFirst();
+//    s->addProduct( p );
+//    emit productListChanged();
+//    return p->idNum();
 
-}
+//}
 
-void Station::deleteProduct()
-{
-    if(_productList.isEmpty()){
-        qDebug()<<"intentando borrar desde estación vacia";
-        return;
-    }
-    _productList.removeFirst();
-    emit productListChanged();
+//void Station::deleteProduct()
+//{
+//    if(_productList.isEmpty()){
+//        qDebug()<<"intentando borrar desde estación vacia";
+//        return;
+//    }
+//    _productList.removeFirst();
+//    emit productListChanged();
 
 
-}
+//}
 
-void Station::deleteProduct(int idProduct)
-{
-    for(int i =0;i<_productList.size();++i){
-        if(_productList.at(i)->idNum() == idProduct){
-            _productList.removeAt(i);
-            emit productListChanged();
-        }
-    }
-}
+//void Station::deleteProduct(int idProduct)
+//{
+//    for(int i =0;i<_productList.size();++i){
+//        if(_productList.at(i)->idNum() == idProduct){
+//            _productList.removeAt(i);
+//            emit productListChanged();
+//        }
+//    }
+//}

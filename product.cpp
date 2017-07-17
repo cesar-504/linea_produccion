@@ -12,3 +12,11 @@ void Product::setIdNum(const int newIdNum)
     emit idNumChanged();
 
 }
+
+void Product::setStation(Station *newStation)
+{
+    if(_station==newStation) return;
+    _station=newStation;
+    emit stationChanged();
+
+}

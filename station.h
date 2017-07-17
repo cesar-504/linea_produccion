@@ -5,15 +5,12 @@
 #include <QString>
 #include <QList>
 #include <QQmlListProperty>
-#include "product.h"
 class Station : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(int  idNum READ idNum WRITE setIdNum NOTIFY idNumChanged)
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(Types type READ type WRITE setType NOTIFY typeChanged)
-    Q_PROPERTY(QQmlListProperty<Product> productList READ productList /*WRITE setProductList */ NOTIFY productListChanged)
-    Q_PROPERTY(int count READ count  NOTIFY productListChanged)
     Q_PROPERTY(int msToDel READ msToDel WRITE setMsToDel NOTIFY msToDelChanged)
     Q_PROPERTY(bool isOn READ isOn  NOTIFY isOnChanged)
 
@@ -39,19 +36,14 @@ public:
     void setName(const QString newName);
     Types type() const {return _type;}
     void setType(const Types newType);
-    QQmlListProperty<Product> productList() {return QQmlListProperty<Product>(this,_productList);}
-    Q_INVOKABLE int productCount(){return _productList.size();}
-    //    void setProductList(const QList<Product *> newProductList);
-    int count() const {return _productList.size();}
+
+
     int msToDel() const {return _msToDel;}
     void setMsToDel(const int newMsToDel);
     bool isOn() const {return _isOn;}
     void setIsOn(const bool newIsOn);
 
-    void addProduct(Product * p);
-    int moveToStation(Station * s);
-    void deleteProduct();
-    void deleteProduct(int IdProduct);
+
 
 
 signals:
@@ -66,7 +58,6 @@ private:
     int  _idNum;
     QString _name;
     Types _type;
-    QList<Product *>  _productList;
     int _msToDel=1500;
     bool _isOn;
 };

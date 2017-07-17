@@ -21,6 +21,10 @@ class ProductionLine : public QObject
     Q_PROPERTY(SPLogModel * spModel READ spModel WRITE setSpModel NOTIFY spModelChanged)
     Q_PROPERTY(bool isStart READ isStart WRITE setIsStart NOTIFY isStartChanged)
     Q_PROPERTY(QQmlListProperty<Station> stations READ stations  NOTIFY stationsChanged)
+    Q_PROPERTY(QQmlListProperty<Product> products READ products /*WRITE setProducts*/ NOTIFY productsChanged)
+
+
+
     Q_CLASSINFO("DefaultProperty", "stations")
 
 
@@ -43,6 +47,7 @@ public:
     SPLogModel * spModel() const {return _spModel;}
     void setSpModel(SPLogModel * newSpModel);
     QQmlListProperty<Station> stations() {return QQmlListProperty<Station>(this,_stations);}
+    QQmlListProperty<Product> products() {return QQmlListProperty<Product> (this,_products);}
 
 
 
@@ -63,10 +68,11 @@ signals:
     void started(int station=0);
     void stopped(int station=0);
     void stationsChanged();
-
-
+    void productsChanged();
 private:
     void sendMsg(const QString msg);
+    Product * productInStation(int idStation);
+
 
 
     bool ck50(QString msg);
@@ -86,6 +92,7 @@ private:
     ProductionLineDb * _db;
     SPLogModel * _spModel;
     QList<Station *> _stations;
+    QList<Product *> _products;
 };
 
 #endif // PRODUCTIONLINE_H

@@ -2,12 +2,13 @@
 #include <QStringRef>
 #include <QDebug>
 #include <memory>
-
+#include <QTimer>
 ProductionLine::ProductionLine(QObject *parent) : QObject(parent)
 {
     _db = new ProductionLineDb(this);
     connect(this,&ProductionLine::started,_db,&ProductionLineDb::start);
     connect(this,&ProductionLine::stopped,_db,&ProductionLineDb::stop);
+
 }
 
 void ProductionLine::setSender(ISender *newSender)
@@ -41,6 +42,11 @@ void ProductionLine::setSpModel(SPLogModel *newSpModel)
     emit spModelChanged();
 
 }
+
+
+
+
+
 
 void ProductionLine::start(int station, QJSValue callback)
 {
@@ -98,6 +104,8 @@ bool ProductionLine::ck50(QString msg)
             return false;
         }else{
             sub = QStringRef(&msg,4,2);
+
+            setStationOnOff(true);
             emit started(sub.toInt(nullptr,10));
         }
 
@@ -108,6 +116,7 @@ bool ProductionLine::ck50(QString msg)
             return false;
         }else{
             sub = QStringRef(&msg,4,2);
+            setStationOnOff(false);
             emit stopped(sub.toInt(nullptr,10));
         }
     }
@@ -125,6 +134,30 @@ bool ProductionLine::ck51(QString msg)
     sub = QStringRef(&msg,4,2);
     to  = sub.toInt(&b2,10);
     if(b && b2){
+        int pId =-1;
+        if(from==0){
+            Product * p = new Product(this);
+            p->setIdNum(1);
+            _stations.at(0)->addProduct(p);
+            pId=p->idNum();
+
+        } else {
+            pId = _stations.at(from-1)->moveToStation(_stations.at(to-1));
+
+        }
+        if(_stations.at(to-1)->type() == Station::Exit ||
+                _stations.at(to-1)->type() == Station::ExitError){
+
+            QTimer::singleShot(_stations.at(to-1)->msToDel(),
+                [this,to,pId](){
+                    this->_stations.at(to-1)->deleteProduct(pId);
+                    emit this->stationsChanged();
+                }
+            );
+
+        }
+
+        emit stationsChanged();
         emit entryOn(from,to);
         sendMsg("^50"+msg+"00$");
         return true;
@@ -138,6 +171,7 @@ bool ProductionLine::ck51(QString msg)
 
 bool ProductionLine::ck52(QString msg)
 {
+
     if(!msg.startsWith("52")) return false;
     int from, to;
     QStringRef sub(&msg,2,2);
@@ -147,6 +181,10 @@ bool ProductionLine::ck52(QString msg)
     sub = QStringRef(&msg,4,2);
     to  = sub.toInt(&b2,10);
     if(b && b2){
+        if(to==0){
+            _stations.at(from-1)->deleteProduct();
+            emit stationsChanged();
+        }
         emit exitOn(from,to);
         sendMsg("^50"+msg+"00$");
         return true;
@@ -155,6 +193,12 @@ bool ProductionLine::ck52(QString msg)
         sendMsg("^50"+msg+"01$");
         return false;
     }
+}
+
+void ProductionLine::setStationOnOff(bool val)
+{
+    for(Station *s : _stations)
+        s->setIsOn(val);
 }
 
 void ProductionLine::msgHandler(QString msg)

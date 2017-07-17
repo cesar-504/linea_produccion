@@ -54,14 +54,18 @@ public:
 
 private slots:
     void simulation(){
+        if(_index==6){
+            qDebug();
+        }
+
         if(_exit){
             emit msgReceived("^520"+QString::number(_index) +"0"+QString::number(_index+1) +"$");
             _index++;
         }else
             emit msgReceived("^510"+QString::number(_index-1) +"0"+QString::number(_index) +"$");
-
+        if(_index==6) _index=1;
         _exit= !_exit;
-        if(_index==5) _index=1;
+
 
 
     }

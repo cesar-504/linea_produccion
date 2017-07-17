@@ -6,7 +6,9 @@ SOURCES += main.cpp \
     serialsender.cpp \
     productionline.cpp \
     productionlinedb.cpp \
-    splogmodel.cpp
+    splogmodel.cpp \
+    station.cpp \
+    product.cpp
 
 RESOURCES += qml.qrc \
     images.qrc
@@ -47,4 +49,6 @@ HEADERS += \
     productionline.h \
     testsender.h \
     productionlinedb.h \
-    splogmodel.h
+    splogmodel.h \
+    station.h \
+    product.h

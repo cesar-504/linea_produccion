@@ -9,6 +9,8 @@
 #include <QDebug>
 #include "productionlinedb.h"
 #include "splogmodel.h"
+#include "station.h"
+#include "product.h"
 int main(int argc, char *argv[])
 {
 
@@ -19,6 +21,8 @@ int main(int argc, char *argv[])
     qmlRegisterType<SPLogModel>("my", 1, 0, "SPLogModel");
     qmlRegisterType<ProductionLine>("my", 1, 0, "ProductionLine");
     qmlRegisterType<TestSender>("my", 1, 0, "TestSender");
+    qmlRegisterType<Station>("my", 1, 0, "Station");
+    qmlRegisterType<Product>("my", 1, 0, "Product");
     ProductionLineDb::initDB();
     ProductionLineDb::createTables();
 //    ProductionLine  * p = new ProductionLine();

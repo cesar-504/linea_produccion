@@ -65,6 +65,7 @@ signals:
     void spModelChanged();
     void entryOn(int from, int to);
     void exitOn(int from, int to);
+    void move(int from, int to,int idNum);
     void started(int station=0);
     void stopped(int station=0);
     void stationsChanged();

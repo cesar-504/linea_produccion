@@ -61,7 +61,7 @@ private slots:
             emit msgReceived("^510"+QString::number(_index-1) +"0"+QString::number(_index) +"$");
 
         _exit= !_exit;
-        if(_index==5) _index=1;
+        if(_index==6) _index=1;
 
 
     }

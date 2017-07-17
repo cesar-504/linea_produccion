@@ -8,6 +8,32 @@ Rectangle {
     color: "#96969b"
     height: 500
     width:  700
+    property var points: [p1,p2,p3,p4,p5,p6,p7,p8,p9]
+    Item{
+        id:cont
+        anchors.fill: parent
+        Repeater{
+            id:rep
+            model: 100
+            Image {
+                id: phaseP
+                width: 40
+                height: 40
+                x: 8
+                y: 134
+                z:-10
+                fillMode: Image.PreserveAspectFit
+                source: "../images/product2.png"
+                Behavior on x{
+                     NumberAnimation { duration: 500 }
+                }
+                Behavior on y{
+                     NumberAnimation { duration: 500 }
+                }
+
+            }
+        }
+    }
     Image {
         id: phaseE
         x: 0
@@ -73,27 +99,21 @@ Rectangle {
 
         OnPoint{}
     }
-
-
-    Repeater{
-        model: app.pl.products
-        Image {
-            id: phaseP
-            width: 40
-            height: 40
-            fillMode: Image.PreserveAspectFit
-            source: "../images/product2.png"
+    Connections{
+        target: app.pl
+        onMove:{
+            if(from<=0)return;
+            cont.children[idNum-1].y= points[to-1].y;
+            cont.children[idNum-1].x= points[to-1].x;
         }
     }
 
 
 
+
+
     Item {
-        id: points
-        anchors.rightMargin: 0
-        anchors.bottomMargin: 0
-        anchors.leftMargin: 0
-        anchors.topMargin: 0
+
         anchors.fill: parent
 
         Image {
@@ -198,8 +218,6 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        console.log("________________________________________")
-        console.log(points.children[8].source)
     }
 
 }

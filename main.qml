@@ -76,7 +76,7 @@ ApplicationWindow {
             model: ListModel {
                 ListElement { title: "Pantalla principal"; source:"qrc:/views/StartPage.qml"}
                 ListElement { title: "Vista de información"; source: "qrc:/views/InfoView.qml"}
-
+                ListElement { title: "Graficas"; source: "qrc:/views/Charts.qml"}
             }
             ScrollIndicator.vertical: ScrollIndicator {}
             }

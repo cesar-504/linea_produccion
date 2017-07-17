@@ -10,5 +10,6 @@
         <file>views/OnPoint.qml</file>
         <file>views/CountView.qml</file>
         <file>views/ButtonsOnOff.qml</file>
+        <file>views/Charts.qml</file>
     </qresource>
 </RCC>

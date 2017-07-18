@@ -3,6 +3,8 @@ import QtCharts 2.0
 import QtQuick.Controls 2.1
 import QtQuick.Layouts 1.3
 Item {
+    Repeater{
+        model: app.pl.countModel
 
     Rectangle{
         id: background
@@ -20,18 +22,14 @@ Item {
 
         PieSeries {
             id: applepie
-            Repeater{
-                model: app.pl.countModel
 
-
-            PieSlice { label: "Reparados"; value: totalRepairPr-totalErrorPr}
-            PieSlice { label: "Erroneos"; value: totalErrorPr}
-            PieSlice { label: "Sin errores"; value: totalOkPr-totalRepairPr-totalErrorPr}
-       }
+            PieSlice { label: "Reparados"; value: totalRepairPr-totalErrorPr; onHovered: { exploded =true; label:percentage}exploded: false}
+            PieSlice { label: "Erroneos"; value: totalErrorPr;onHovered:{ exploded =true} exploded: false }
+            PieSlice { label: "Sin errores"; value: totalOkPr-totalRepairPr-totalErrorPr;onHovered: {exploded =true} exploded: false}
             }
 
      }
-
+}
      Component.onCompleted: {
 
      }

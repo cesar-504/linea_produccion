@@ -9,24 +9,30 @@ Item {
         color: "#060511"
         anchors.fill: parent
      ChartView {
+         id: chart
          title:"Productos"
-         height: 300
+         height: 400
          anchors.verticalCenter: parent.verticalCenter
          anchors.horizontalCenter: parent.horizontalCenter
-         width: 400
+         width: 500
+         legend.alignment: Qt.AlignBottom
         antialiasing: true
 
-        LineSeries {
-            name: "aprobados/rechazados"
-            Repeater {
-                model:app.pl.countModel
-                XYPoint { x: 5; y: 7 }
+        PieSeries {
+            id: applepie
+            Repeater{
+                model: app.pl.countModel
 
+
+            PieSlice { label: "Reparados"; value: totalRepairPr-totalErrorPr}
+            PieSlice { label: "Erroneos"; value: totalErrorPr}
+            PieSlice { label: "Sin errores"; value: totalOkPr-totalRepairPr-totalErrorPr}
+       }
             }
-        }
+
      }
-     function granttpoints()
-     {
+
+     Component.onCompleted: {
 
      }
     }

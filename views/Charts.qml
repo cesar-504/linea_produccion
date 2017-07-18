@@ -23,7 +23,7 @@ Item {
         PieSeries {
             id: applepie
 
-            PieSlice { label: "Reparados"; value: totalRepairPr-totalErrorPr; onHovered: { exploded =true; label:percentage}exploded: false}
+            PieSlice { label: "Reparados"; value: totalRepairPr-totalErrorPr; onHovered: { exploded =true; }exploded: false}
             PieSlice { label: "Erroneos"; value: totalErrorPr;onHovered:{ exploded =true} exploded: false }
             PieSlice { label: "Sin errores"; value: totalOkPr-totalRepairPr-totalErrorPr;onHovered: {exploded =true} exploded: false}
             }
